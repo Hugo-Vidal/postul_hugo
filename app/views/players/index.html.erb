@@ -2,26 +2,53 @@
 
 <h1>Players</h1>
 <br>
-<h1> Ruleta =<%= @rulette %></h1>
+<h1> Ruleta = <%= @rulette %></h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Bet</th>
-      <th>Wager</th>
-      <th>Money</th>
+      <th>Resultado</th>
+      <th>Dinero Inicial</th>
+      <th>Apuesta</th>
+      <th>Apuesta Monetaria</th>
+      <th>Ingreso/Egreso</th>
+      <th>Dinero Final</th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
-
+ 
   <tbody>
     <% @players.each do |player| %>
+
       <tr>
-        <td><%= player.name %></td>
+      <td><%= player.name %></td>
+
+      <% if @rulette.to_s == "Verde" && player.bet.to_s == "Verde" %>
+        <td>Gana!</td>
+        <td><%= player.money - player.wager * 15 %></td>
         <td><%= player.bet %></td>
         <td><%= player.wager %></td>
+        <td>+<%= 15 * player.wager %></td>
         <td><%= player.money %></td>
+      <% elsif @rulette.to_s == player.bet.to_s %>
+        <td> Gana! </td>
+        <td><%= player.money - player.wager * 2 %></td>
+        <td><%= player.bet %></td>
+        <td><%= player.wager %></td>
+        <td>+<%= 2 * player.wager %></td>
+        <td><%= player.money %></td>
+        
+      <% else %>
+      <td> Pierde! </td>
+        <td><%= player.money + player.wager %></td>
+        <td><%= player.bet %></td>
+        <td><%= player.wager %></td>
+        <td>-<%=player.wager%> </td>
+        <td><%= player.money %></td>
+        
+      <% end %>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>

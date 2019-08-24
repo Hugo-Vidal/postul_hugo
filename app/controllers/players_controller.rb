@@ -8,9 +8,9 @@ class PlayersController < ApplicationController
     @players = Player.all
     temperature = [24, 24, 24, 24, 24, 24]
 
-      @rulette = random_weighted(green: 2, red: 49, black: 49)
+      @rulette = random_weighted(Verde: 2, Rojo: 49, Negro: 49)
       @players.each do |player|
-        player.bet = random_weighted(green: 2, red: 49, black: 49)
+        player.bet = random_weighted(Verde: 2, Rojo: 49, Negro: 49)
 
         if player.money == 0
           player.wager = 0
@@ -21,8 +21,8 @@ class PlayersController < ApplicationController
         else
           player.wager = player.money * (rand(8..15))/100
         end
-
-        if @rulette.to_s == "green" && player.bet.to_s == "green"
+        
+        if @rulette.to_s == "Verde" && player.bet.to_s == "green"
           player.money += 15*player.wager
         elsif @rulette.to_s == player.bet.to_s
           player.money += 2*player.wager
