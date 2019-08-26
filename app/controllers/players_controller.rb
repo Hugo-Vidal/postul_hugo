@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   
 
@@ -6,31 +7,6 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
-    temperature = [24, 24, 24, 24, 24, 24]
-
-      @rulette = random_weighted(Verde: 2, Rojo: 49, Negro: 49)
-      @players.each do |player|
-        player.bet = random_weighted(Verde: 2, Rojo: 49, Negro: 49)
-
-        if player.money == 0
-          player.wager = 0
-        elsif player.money <= 1000
-          player.wager = player.money
-        elsif temperature.max >= 25
-          player.wager = player.money * (rand(3..7))/100
-        else
-          player.wager = player.money * (rand(8..15))/100
-        end
-        
-        if @rulette.to_s == "Verde" && player.bet.to_s == "green"
-          player.money += 15*player.wager
-        elsif @rulette.to_s == player.bet.to_s
-          player.money += 2*player.wager
-        else
-          player.money -= player.wager
-        end
-        player.save
-      end
   end
     
 
@@ -96,20 +72,7 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :money)
-    end
-
-    def random_weighted(weighted)
-      max    = sum_of_weights(weighted)
-      target = rand(1..max)
-      weighted.each do |item, weight|
-        return item if target <= weight
-        target -= weight
-      end
-    end
-  
-    def sum_of_weights(weighted)
-      weighted.inject(0) { |sum, (item, weight)| sum + weight }
+      params.require(:player).permit(:name, :money, :bet, :wager)
     end
 
 end

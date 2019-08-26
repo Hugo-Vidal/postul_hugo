@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Juegos</h1>
+<br>
+
+<table class="table text-center">
+    <thead>
+    <tr>
+        <th>Resultado Ruleta</th>
+        <th>Jugador </th>
+        <th>Resultado</th>
+        <th>Dinero Inicial</th>
+        <th>Apuesta Jugador</th>
+        <th>Apuesta Monetaria</th>
+        <th>Ingreso/Egreso</th>
+        <th>Dinero Final</th>
+        <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+        <% @roulettes.group_by(&:game).each do |key, value| %>
+            <% value.each do |player| %>
+                <tr style= "background-color: #f2f2f2;">
+                    <td><%= player.result %></td>
+                    <td><%= player.name %></td>
+
+                    <% if player.result.to_s == "green" && player.bet.to_s == "green" %>
+                        <td>Gana!</td>
+                        <td><%= player.money - 15*player.wager %></td>
+                        <td><%= player.bet %></td>
+                        <td><%= player.wager %></td>
+                        <td>+<%= 15 * player.wager %></td>
+                        <td><%= player.money %></td>
+                    <% elsif player.result.to_s == player.bet.to_s %>
+                        <td> Gana! </td>
+                        <td><%= player.money - 2*player.wager %></td>
+                        <td><%= player.bet %></td>
+                        <td><%= player.wager %></td>
+                        <td>+<%= 2 * player.wager %></td>
+                        <td><%= player.money%></td>
+                    <% else %>
+                        <td> Pierde! </td>
+                        <td><%= player.money + player.wager %></td>
+                        <td><%= player.bet %></td>
+                        <td><%= player.wager %></td>
+                        <td>-<%=player.wager%> </td>
+                        <td><%= player.money %></td>
+                    <% end %>
+                </tr>
+            <% end %>
+            <th colspan="8"><br></th>
+        <% end%> 
+    </tbody>
+</table>
+
+<br>
+<%= link_to 'New Player', new_player_path %>
+<br>
