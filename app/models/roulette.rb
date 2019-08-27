@@ -1,5 +1,3 @@
 class Roulette < ApplicationRecord
 
-
-
 end

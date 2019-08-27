@@ -1,12 +1,14 @@
+<script language="javascript" type="text/javascript">
+        setTimeout("location.reload();",60000);
+</script>
 <p id="notice"><%= notice %></p>
 
 <h1>¡Ruleta!</h1>
 <br>
 
-<table class="table text-center mb-0">
+<table class="table text-center mb-0" id="reload">
     <thead>
     <tr>
-        <th>Resultado Ruleta</th>
         <th>Jugadores</th>
         <th>Apuesta Jugador</th>
         <th>Apuesta Monetaria</th>
@@ -18,14 +20,11 @@
     </thead>
 
     <tbody>
-        <% @roulettes.group_by(&:game).each do |key, value| %>
-            <% value.each do |player| %>
+        <% @games.each do |key, roulette| %>
+            <tr><td colspan="8">Juego <%= roulette.last.game %> | Resultado Ruleta: <%= roulette.last.result %></td></tr>
+            <% roulette.each do |player| %>
                 <tr style= "background-color: #f2f2f2;">
-                    <td><%= player.result %></td>
                     <td><%= player.name %></td>
-                    
-
-
                     <% if player.result.to_s == "green" && player.bet.to_s == "green" %>
                         <td><%= player.bet %></td>
                         <td><%= player.wager%></td>
@@ -50,7 +49,7 @@
                     <% end %>
                 </tr>
             <% end %>
-            <th colspan="8"><br></th>
+            
         <% end%> 
     </tbody>
 </table>
