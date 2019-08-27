@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Juegos</h1>
+<h1>¡Ruleta!</h1>
 <br>
 
-<table class="table text-center">
+<table class="table text-center mb-0">
     <thead>
     <tr>
         <th>Resultado Ruleta</th>
-        <th>Jugador </th>
-        <th>Resultado</th>
-        <th>Dinero Inicial</th>
+        <th>Jugadores</th>
         <th>Apuesta Jugador</th>
         <th>Apuesta Monetaria</th>
+        <th>Dinero Inicial</th>
         <th>Ingreso/Egreso</th>
         <th>Dinero Final</th>
-        <th colspan="3"></th>
+        <th>Resultado</th>
     </tr>
     </thead>
 
@@ -24,28 +23,30 @@
                 <tr style= "background-color: #f2f2f2;">
                     <td><%= player.result %></td>
                     <td><%= player.name %></td>
+                    
+
 
                     <% if player.result.to_s == "green" && player.bet.to_s == "green" %>
-                        <td>Gana!</td>
-                        <td><%= player.money - 15*player.wager %></td>
                         <td><%= player.bet %></td>
-                        <td><%= player.wager %></td>
+                        <td><%= player.wager%></td>
+                        <td><%= player.money - 15*player.wager %></td>
                         <td>+<%= 15 * player.wager %></td>
                         <td><%= player.money %></td>
-                    <% elsif player.result.to_s == player.bet.to_s %>
-                        <td> Gana! </td>
-                        <td><%= player.money - 2*player.wager %></td>
+                        <td>Gana x15!</td>
+                    <% elsif player.result.to_s == player.bet.to_s %>                        
                         <td><%= player.bet %></td>
                         <td><%= player.wager %></td>
+                        <td><%= player.money - 2*player.wager %></td>
                         <td>+<%= 2 * player.wager %></td>
                         <td><%= player.money%></td>
+                        <td> Gana x2!</td>
                     <% else %>
-                        <td> Pierde! </td>
-                        <td><%= player.money + player.wager %></td>
                         <td><%= player.bet %></td>
                         <td><%= player.wager %></td>
+                        <td><%= player.money + player.wager %></td>
                         <td>-<%=player.wager%> </td>
                         <td><%= player.money %></td>
+                        <td> Pierde! </td>
                     <% end %>
                 </tr>
             <% end %>
@@ -54,6 +55,6 @@
     </tbody>
 </table>
 
-<br>
-<%= link_to 'New Player', new_player_path %>
-<br>
+<div class="mb-4"><%= link_to 'Nuevo jugador', new_player_path, class:"btn btn-info" %></div>
+
+
