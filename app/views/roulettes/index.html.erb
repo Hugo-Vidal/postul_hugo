@@ -11,8 +11,8 @@
     <tr>
         <th>Jugadores</th>
         <th>Apuesta Jugador</th>
-        <th>Apuesta Monetaria</th>
         <th>Dinero Inicial</th>
+        <th>Apuesta Monetaria</th>
         <th>Ingreso/Egreso</th>
         <th>Dinero Final</th>
         <th>Resultado</th>
@@ -27,22 +27,22 @@
                     <td><%= player.name %></td>
                     <% if player.result.to_s == "green" && player.bet.to_s == "green" %>
                         <td><%= player.bet %></td>
+                        <td><%= player.money - 14*player.wager %></td>
                         <td><%= player.wager%></td>
-                        <td><%= player.money - 15*player.wager %></td>
                         <td>+<%= 15 * player.wager %></td>
                         <td><%= player.money %></td>
                         <td>Gana x15!</td>
                     <% elsif player.result.to_s == player.bet.to_s %>                        
                         <td><%= player.bet %></td>
+                        <td><%= player.money - player.wager %></td>
                         <td><%= player.wager %></td>
-                        <td><%= player.money - 2*player.wager %></td>
                         <td>+<%= 2 * player.wager %></td>
                         <td><%= player.money%></td>
                         <td> Gana x2!</td>
                     <% else %>
                         <td><%= player.bet %></td>
-                        <td><%= player.wager %></td>
                         <td><%= player.money + player.wager %></td>
+                        <td><%= player.wager %></td>
                         <td>-<%=player.wager%> </td>
                         <td><%= player.money %></td>
                         <td> Pierde! </td>

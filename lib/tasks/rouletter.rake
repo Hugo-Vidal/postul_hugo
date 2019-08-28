@@ -16,7 +16,7 @@ task rouletter: :environment do
     end
 
     def temperature
-        client = Apixu::Client.new(ENV["APIXU_SECRET_KEY"])
+        client = Apixu::Client.new("4428652bf4b14b76a7f203910192708")
         @forecast = client.forecast([-33.4726900, -70.6472400], 7)
         @days = @forecast['forecast']['forecastday']
         @temperature_santiago_7 = []
@@ -45,9 +45,9 @@ task rouletter: :environment do
 
     player.bet = random_weighted(green: 2, red: 49, black: 49)
     if @game_win.to_s == "green" && player.bet.to_s == "green"
-        player.money += 15*player.wager
+        player.money += 14*player.wager
     elsif @game_win.to_s == player.bet.to_s
-        player.money += 2*player.wager
+        player.money += player.wager
     else
         player.money -= player.wager
     end
