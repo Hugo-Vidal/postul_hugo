@@ -1,0 +1,10 @@
+rouletter:
+class: "SomeActiveJob"
+every: "3.minutes"
+at: "*:00"
+
+players_end_day:
+class: "SomeSidekiqWorker"
+every: "1.day"
+at: "00:00"
+
