@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.2'
+ruby '2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'whenever', require: false
 gem 'savon', '~> 2.12.0'
 gem 'apixu', git: 'https://github.com/apixu/apixu-ruby.git', branch: 'master'
-
+gem 'jquery-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
