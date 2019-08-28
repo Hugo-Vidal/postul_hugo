@@ -1,10 +1,10 @@
 rouletter:
-class: "SomeActiveJob"
+class: "Rouletter"
 every: "3.minutes"
 at: "*:00"
 
 players_end_day:
-class: "SomeSidekiqWorker"
+class: "PlayersEndDay"
 every: "1.day"
 at: "00:00"
 
