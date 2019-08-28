@@ -26,6 +26,7 @@ gem 'whenever', require: false
 gem 'savon', '~> 2.12.0'
 gem 'apixu', git: 'https://github.com/apixu/apixu-ruby.git', branch: 'master'
 gem 'jquery-rails'
+gem "simple_scheduler"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
