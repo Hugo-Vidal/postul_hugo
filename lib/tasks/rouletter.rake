@@ -16,7 +16,7 @@ task rouletter: :environment do
     end
 
     def temperature
-        client = Apixu::Client.new("4428652bf4b14b76a7f203910192708")
+        client = Apixu::Client.new(ENV["APIXU_SECRET_KEY"])
         @forecast = client.forecast([-33.4726900, -70.6472400], 7)
         @days = @forecast['forecast']['forecastday']
         @temperature_santiago_7 = []
